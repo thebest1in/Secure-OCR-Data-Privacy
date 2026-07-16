@@ -21,6 +21,8 @@ graph LR
 | Backend | FastAPI + uvicorn |
 | Image | Pillow |
 | Détection PII | Regex (native) |
+| Frontend | React 18 + create‑react‑app |
+| Frontend Server | Nginx (Docker) |
 
 ## Architecture
 
@@ -80,8 +82,13 @@ pip install -r requirements.txt
 ## Docker
 
 ```bash
+# Backend
 docker build -t ocr-securise .
 docker run -p 7070:7070 ocr-securise
+
+# Frontend React (service séparé)
+docker build -t ocr-frontend ./frontend
+docker run -p 8080:80 ocr-frontend
 ```
 
 ## Utilisation
@@ -94,6 +101,25 @@ python main.py
 1. Ouvrir le navigateur sur `http://127.0.0.1:7070`
 2. Importer un document (PNG/JPEG)
 3. Recevoir l'image masquée + le texte anonymisé en téléchargement
+
+## Frontend React
+
+L'interface React se trouve dans `frontend/`. Pour développer :
+
+```bash
+cd frontend
+npm install
+npm start          # dev → http://localhost:3000
+```
+
+L'application React envoie les fichiers à `http://localhost:7070/upload` (backend FastAPI). Assurez-vous que le backend tourne.
+
+Pour construire l'image Docker :
+
+```bash
+docker build -t ocr-frontend ./frontend
+docker run -p 8080:80 ocr-frontend   # → http://localhost:8080
+```
 
 ## Détection des champs sensibles
 
@@ -116,7 +142,18 @@ ocr-securise/
 │   ├── detector.py         # Détection PII par regex
 │   └── masker.py           # Masquage image + texte
 ├── templates/
-│   └── index.html          # Interface web
+│   └── index.html          # Interface web (Jinja2)
+├── frontend/               # React UI
+│   ├── package.json
+│   ├── Dockerfile
+│   ├── public/
+│   │   └── index.html
+│   └── src/
+│       ├── App.js
+│       ├── App.css
+│       └── index.js
+├── Dockerfile
 ├── requirements.txt
-└── integration_test.py     # Tests
+├── integration_test.py     # Tests
+└── README.md
 ```
