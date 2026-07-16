@@ -60,7 +60,7 @@ flowchart TD
     D --> G{CIN, PHONE, EMAIL, DATE, ZIP?}
     E --> H{Nom, Prénom, CIN, Date naiss?}
     F --> I{Rue, Avenue, N°?}
-    G --> J[Résultat: (bbox, type)]
+    G --> J[Résultat]
     H --> J
     I --> J
     J --> K[Masquage image: draw.rectangle]
@@ -81,10 +81,10 @@ pip install -r requirements.txt
 
 ```bash
 python main.py
-# → http://127.0.0.1:8000
+# → http://127.0.0.1:7070
 ```
 
-1. Ouvrir le navigateur sur `http://127.0.0.1:8000`
+1. Ouvrir le navigateur sur `http://127.0.0.1:7070`
 2. Importer un document (PNG/JPEG)
 3. Recevoir l'image masquée + le texte anonymisé en téléchargement
 

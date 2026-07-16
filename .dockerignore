@@ -2,4 +2,8 @@ uploads/
 output/
 __pycache__/
 *.pyc
+.git
+.gitignore
+README.md
 PROJECT_MAP.md
+integration_test.py
