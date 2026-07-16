@@ -57,14 +57,14 @@ flowchart TD
     C --> D[Pass 1: Patterns regex]
     C --> E[Pass 2: Étiquettes + contexte]
     C --> F[Pass 3: Mots-clés adresse]
-    D --> G{CIN, PHONE, EMAIL, DATE, ZIP?}
-    E --> H{Nom, Prénom, CIN, Date naiss?}
-    F --> I{Rue, Avenue, N°?}
+    D --> G{"CIN, PHONE, EMAIL, DATE, ZIP?"}
+    E --> H{"Nom, Prénom, CIN, Date naiss?"}
+    F --> I{"Rue, Avenue, N°?"}
     G --> J[Résultat]
     H --> J
     I --> J
     J --> K[Masquage image: draw.rectangle]
-    J --> L[Masquage texte: [MASKED]]
+    J --> L["Masquage texte: [MASKED]"]
 ```
 
 ## Installation
