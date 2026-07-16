@@ -1,5 +1,4 @@
 # PROJECT_MAP — OCR Sécurisé
-()
 ## [TECH_STACK]
 | Component | Technology | Version |
 |-----------|-----------|---------|
