@@ -77,6 +77,13 @@ winget install UB-Mannheim.TesseractOCR
 pip install -r requirements.txt
 ```
 
+## Docker
+
+```bash
+docker build -t ocr-securise .
+docker run -p 7070:7070 ocr-securise
+```
+
 ## Utilisation
 
 ```bash
